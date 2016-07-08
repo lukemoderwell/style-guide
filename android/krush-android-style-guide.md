@@ -518,6 +518,16 @@ x++;
 y--;
 --y;
 ```
+__Exception: for loops usage of increment__
+
+If you are using an older for loop where you need to increment/decrement in the declaration of the for loop that is OK. For example, the following is accept:
+
+```java
+for (int i = 0; i < 10; i ++) {
+    System.out.println(i);
+}
+```
+
 
 ## 2.3 XML style rules
 
