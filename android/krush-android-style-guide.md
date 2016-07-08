@@ -1,5 +1,50 @@
 # Krush Android Style Guide
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [1. Project guidelines](#1-project-guidelines)
+  - [1.1 Project structure](#11-project-structure)
+  - [1.2 File naming](#12-file-naming)
+    - [1.2.1 Class files](#121-class-files)
+    - [1.2.2 Resources files](#122-resources-files)
+      - [1.2.2.1 Drawable files](#1221-drawable-files)
+      - [1.2.2.2 Layout files](#1222-layout-files)
+      - [1.2.2.3 Menu files](#1223-menu-files)
+      - [1.2.2.4 Values files](#1224-values-files)
+- [2 Code guidelines](#2-code-guidelines)
+  - [2.1 Java language rules](#21-java-language-rules)
+    - [2.1.1 Don't ignore exceptions](#211-dont-ignore-exceptions)
+    - [2.1.2 Don't catch generic exception](#212-dont-catch-generic-exception)
+    - [2.1.3 Don't use finalizers](#213-dont-use-finalizers)
+    - [2.1.4 Fully qualify imports](#214-fully-qualify-imports)
+  - [2.2 Java style rules](#22-java-style-rules)
+    - [2.2.1 Fields definition and naming](#221-fields-definition-and-naming)
+    - [2.2.2 Treat acronyms as words](#222-treat-acronyms-as-words)
+    - [2.2.3 Use spaces for indentation](#223-use-spaces-for-indentation)
+    - [2.2.4 Use standard brace style](#224-use-standard-brace-style)
+    - [2.2.5 Annotations](#225-annotations)
+      - [2.2.5.1 Annotations practices](#2251-annotations-practices)
+      - [2.2.5.2 Annotations style](#2252-annotations-style)
+    - [2.2.6 Limit variable scope](#226-limit-variable-scope)
+    - [2.2.7 Order import statements](#227-order-import-statements)
+    - [2.2.8 Logging guidelines](#228-logging-guidelines)
+    - [2.2.9 Class member ordering](#229-class-member-ordering)
+    - [2.2.10 Parameter ordering in methods](#2210-parameter-ordering-in-methods)
+    - [2.2.11 Arguments in Fragments and Activities](#2211-arguments-in-fragments-and-activities)
+    - [2.2.12 Line length limit](#2212-line-length-limit)
+      - [2.2.12.1 Line-wrapping strategies](#22121-line-wrapping-strategies)
+    - [2.2.13 Increment/Decrement Operators](#2213-incrementdecrement-operators)
+  - [2.3 XML style rules](#23-xml-style-rules)
+    - [2.3.1 Resources naming](#231-resources-naming)
+      - [2.3.1.1 ID naming](#2311-id-naming)
+      - [2.3.1.2 Strings](#2312-strings)
+      - [2.3.1.3 Styles and Themes](#2313-styles-and-themes)
+    - [2.3.2 Attributes ordering](#232-attributes-ordering)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 1. Project guidelines
 
 ## 1.1 Project structure
@@ -9,12 +54,12 @@ New projects should follow the Android Gradle project structure that is defined 
 ## 1.2 File naming
 
 ### 1.2.1 Class files
-Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase).
+Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase). With the exception of names of our branded products. For example, a class name with ooVoo is allowed and does not have to be Oovoo.
 
 For classes that extend an Android component, the name of the class should end with the name of the component; for example: `SignInActivity`, `SignInFragment`, `ImageUploaderService`, `ChangePasswordDialog`.
 
 ### 1.2.2 Resources files
-	
+
 Resources file names are written in __lowercase_underscore__.
 
 #### 1.2.2.1 Drawable files
@@ -22,15 +67,15 @@ Resources file names are written in __lowercase_underscore__.
 Naming conventions for drawables:
 
 
-| Asset Type   | Prefix            |		Example               |
+| Asset Type   | Prefix            |        Example              |
 |--------------| ------------------|-----------------------------|
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
-| Button       | `btn_`	            | `btn_send_pressed.9.png`    |
+| Button       | `btn_`            | `btn_send_pressed.9.png`    |
 | Dialog       | `dialog_`         | `dialog_top.9.png`          |
 | Divider      | `divider_`        | `divider_horizontal.9.png`  |
-| Icon         | `ic_`	            | `ic_star.png`               |
-| Menu         | `menu_	`           | `menu_submenu_bg.9.png`     |
-| Notification | `notification_`	| `notification_bg.9.png`     |
+| Icon         | `ic_`             | `ic_star.png`               |
+| Menu         | `menu_    `       | `menu_submenu_bg.9.png`     |
+| Notification | `notification_`   | `notification_bg.9.png`     |
 | Tabs         | `tab_`            | `tab_pressed.9.png`         |
 
 Naming conventions for icons (taken from [Android iconography guidelines](http://developer.android.com/design/style/iconography.html)):
@@ -46,7 +91,7 @@ Naming conventions for icons (taken from [Android iconography guidelines](http:/
 
 Naming conventions for selector states:
 
-| State	       | Suffix          | Example                     |
+| State        | Suffix          | Example                     |
 |--------------|-----------------|-----------------------------|
 | Normal       | `_normal`       | `btn_order_normal.9.png`    |
 | Pressed      | `_pressed`      | `btn_order_pressed.9.png`   |
@@ -157,8 +202,8 @@ public class MyClass {
 
 ### 2.2.2 Treat acronyms as words
 
-| Good           | Bad            |
-| -------------- | -------------- |
+| Good             | Bad              |
+| --------------   | --------------   |
 | `XmlHttpRequest` | `XMLHTTPRequest` |
 | `getCustomerId`  | `getCustomerID`  |
 | `String url`     | `String URL`     |
@@ -170,7 +215,7 @@ Use __4 space__ indents for blocks:
 
 ```java
 if (x == 1) {
-    x++;
+    x += 1;
 }
 ```
 
@@ -201,13 +246,23 @@ class MyClass {
 
 Braces around the statements are required unless the condition and the body fit on one line.
 
+This is __good__:
+
+```java
+if (condition) {
+    body();
+}
+```
+
 If the condition and the body fit on one line and that line is shorter than the max line length, then braces are not required, e.g.
+
+This is __ok__:
 
 ```java
 if (condition) body();
 ```
 
-This is __bad__:
+This is __bad__ and not allowed:
 
 ```java
 if (condition)
@@ -318,11 +373,11 @@ Example:
 ```java
 public class MainActivity extends Activity {
 
-	private String mTitle;
+    private String mTitle;
     private TextView mTextViewTitle;
 
     public void setTitle(String title) {
-    	mTitle = title;
+        mTitle = title;
     }
 
     @Override
@@ -346,7 +401,7 @@ If your class is extending an __Android component__ such as an Activity or a Fra
 ```java
 public class MainActivity extends Activity {
 
-	//Order matches Activity lifecycle
+    //Order matches Activity lifecycle
     @Override
     public void onCreate() {}
 
@@ -388,9 +443,9 @@ In the case of Activities the method is usually called `getStartIntent()`:
 
 ```java
 public static Intent getStartIntent(Context context, User user) {
-	Intent intent = new Intent(context, ThisActivity.class);
-	intent.putParcelableExtra(EXTRA_USER, user);
-	return intent;
+    Intent intent = new Intent(context, ThisActivity.class);
+    intent.putParcelableExtra(EXTRA_USER, user);
+    return intent;
 }
 ```
 
@@ -398,11 +453,11 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
+    UserFragment fragment = new UserFragment;
+    Bundle args = new Bundle();
+    args.putParcelable(ARGUMENT_USER, user);
+    fragment.setArguments(args)
+    return fragment;
 }
 ```
 
@@ -444,6 +499,26 @@ int longName =
         anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;
 ```
 
+### 2.2.13 Increment/Decrement Operators
+
+We should only use += and -=, and avoid using ++/--. This will help to avoid and confusion around post/pre decrements/increments.
+
+This is __good__:
+
+```java
+x += 1;
+y -= 1;
+```
+
+This is __bad__:
+
+```java
+x++;
+++x;
+y--;
+--y;
+```
+
 ## 2.3 XML style rules
 
 ### 2.3.1 Resources naming
@@ -455,8 +530,8 @@ Resource IDs and names are written in __lowercase_underscore__.
 IDs should be prefixed with the name of the element in lowercase underscore. For example:
 
 
-| Element            | Prefix            |
-| -----------------  | ----------------- |
+| Element              | Prefix              |
+| -----------------    | -----------------   |
 | `TextView`           | `text_`             |
 | `ImageView`          | `image_`            |
 | `Button`             | `button_`           |
@@ -475,7 +550,7 @@ Menu example:
 
 ```xml
 <menu>
-	<item
+    <item
         android:id="@+id/menu_done"
         android:title="Done" />
 </menu>
@@ -486,8 +561,8 @@ Menu example:
 String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
 
 
-| Prefix             | Description                           |
-| -----------------  | --------------------------------------|
+| Prefix               | Description                           |
+| -----------------    | --------------------------------------|
 | `error_`             | An error message                      |
 | `msg_`               | A regular information message         |
 | `title_`             | A title, i.e. a dialog title          |
