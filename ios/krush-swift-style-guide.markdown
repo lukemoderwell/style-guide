@@ -234,7 +234,7 @@ For UIKit view controllers, consider grouping lifecycle, custom accessors, and I
 
 ### Unused Code
 
-Unused (dead) code, including Xcode template code and placeholder comments should be removed. An exception is when your tutorial or book instructs the user to use the commented code.
+Unused (dead) code, including Xcode template code and placeholder comments should be removed.
 
 Aspirational methods not directly associated with the tutorial whose implementation simply calls the super class should also be removed. This includes any empty/unused UIApplicationDelegate methods.
 
@@ -242,18 +242,18 @@ Aspirational methods not directly associated with the tutorial whose implementat
 
 ```swift
 override func didReceiveMemoryWarning() {
-   super.didReceiveMemoryWarning()
-  // Dispose of any resources that can be recreated.
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
 }
 
 override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-   // #warning Incomplete implementation, return the number of sections
-   return 1
+    // #warning Incomplete implementation, return the number of sections
+    return 1
 }
 
 override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  // #warning Incomplete implementation, return the number of rows
-  return Database.contacts.count
+    // #warning Incomplete implementation, return the number of rows
+    return Database.contacts.count
 }
 
 ```
@@ -263,7 +263,7 @@ override func tableView(tableView: UITableView, numberOfRowsInSection section: I
 
 ```swift
 override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  return Database.contacts.count
+    return Database.contacts.count
 }
 ```
 ### Minimal Imports
