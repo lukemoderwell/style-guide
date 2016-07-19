@@ -235,8 +235,7 @@ For UIKit view controllers, consider grouping lifecycle, custom accessors, and I
 ### Unused Code
 
 Unused (dead) code, including Xcode template code and placeholder comments should be removed.
-
-Aspirational methods not directly associated with the tutorial whose implementation simply calls the super class should also be removed. This includes any empty/unused UIApplicationDelegate methods.
+This includes any empty/unused UIApplicationDelegate methods.
 
 **Not Preferred:**
 
@@ -752,7 +751,7 @@ let value = max(x,y,z)  // another free function that feels natural
 
 ## Memory Management
 
-Code (even non-production, tutorial demo code) should not create reference cycles. Analyze your object graph and prevent strong cycles with `weak` and `unowned` references. Alternatively, use value types (`struct`, `enum`) to prevent cycles altogether.
+Code should not create reference cycles. Analyze your object graph and prevent strong cycles with `weak` and `unowned` references. Alternatively, use value types (`struct`, `enum`) to prevent cycles altogether.
 
 ### Extending object lifetime
 
@@ -790,7 +789,7 @@ resource.request().onComplete { [weak self] response in
 
 ## Access Control
 
-Full access control annotation in tutorials can distract from the main topic and is not required. Using `private` appropriately, however, adds clarity and promotes encapsulation. Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
+Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
 
 **Preferred:**
 
@@ -808,47 +807,6 @@ class TimeMachine {
 }
 ```
 
-## Control Flow
-
-Prefer the `for-in` style of `for` loop over the `while-condition-increment` style.
-
-**Preferred:**
-
-```swift
-for _ in 0..<3 {
-    print("Hello three times")
-}
-
-for (index, person) in attendeeList.enumerate() {
-    print("\(person) is at position #\(index)")
-}
-
-for index in 0.stride(to: items.count, by: 2) {
-    print(index)
-}
-
-for index in (0...3).reverse() {
-    print(index)
-}
-```
-
-**Not Preferred:**
-
-```swift
-var i = 0
-while i < 3 {
-    print("Hello three times")
-    i += 1
-}
-
-
-var i = 0
-while i < attendeeList.count {
-    let person = attendeeList[i]
-    print("\(person) is at position #\(i)")
-    i += 1
-}
-```
 ## Golden Path
 
 When coding with conditionals, the left hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
