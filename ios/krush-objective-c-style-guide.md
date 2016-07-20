@@ -484,12 +484,14 @@ This allows for more consistency across files and greater visual clarity.
 
 ```objc
 if (someObject) {}
+if (!someObject) {}
 if (![anotherObject boolValue]) {}
 ```
 
 **Unacceptable:**
 
 ```objc
+if (someObject != nil) {} 
 if (someObject == nil) {}
 if ([anotherObject boolValue] == NO) {}
 if (isAwesome == YES) {} // Never do this.
