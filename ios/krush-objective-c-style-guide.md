@@ -30,6 +30,7 @@ This style guide is based off the [Ray Wenderlich Objective-C Style Guide](https
 * [Golden Path](#golden-path)
 * [Error handling](#error-handling)
 * [Singletons](#singletons)
+* [Character Limit](#character-limit)
 * [Line Breaks](#line-breaks)
 * [Smiley Face](#smiley-face)
 * [Xcode Project](#xcode-project)
@@ -659,6 +660,7 @@ Some of Apple’s APIs write garbage values to the error parameter (if non-NULL)
 ## Singletons
 
 Singleton objects should use a thread-safe pattern for creating their shared instance.
+
 ```objc
 + (instancetype)sharedInstance {
     static id sharedInstance = nil;
@@ -674,23 +676,126 @@ Singleton objects should use a thread-safe pattern for creating their shared ins
 
 This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
 
+## Character Limit
+
+Maintain a 120 character per line limit.
 
 ## Line Breaks
 
-Line breaks are an important topic since this style guide is focused for print and online readability.
+Use line breaks to adhere to the character limit.  For methods with multiple paramenters use XCode's colon-align.
 
-For example:
-
-```objc
-self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
-```
-A long line of code like this should be carried on to the second line adhering to this style guide's Spacing section (four spaces).
+**Acceptable:**
 
 ```objc
-self.productsRequest = [[SKProductsRequest alloc] 
-    initWithProductIdentifiers:productIdentifiers];
+[self.controllerContext.notificationController application:application
+                                handleActionWithIdentifier:identifier
+                                     forRemoteNotification:userInfo
+                                          withResponseInfo:responseInfo
+                                         completionHandler:completionHandler];
+
+
 ```
 
+**Unacceptable:**
+
+```objc
+[self.controllerContext.notificationController application:application handleActionWithIdentifier:identifier forRemoteNotification:userInfo withResponseInfo:responseInfo completionHandler:completionHandler];
+
+```
+
+###Blocks
+If a method which takes a block parameter does not fit on one line, define the block first and pass it in to the method.
+
+**Acceptable:**
+
+
+```objc
+void (^myBlock)(NSNotification *) = ^(NSNotification *notification) {
+    // A bunch of code
+};
+    
+[[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification
+												  object:nil
+												   queue:nil
+                                              usingBlock:myBlock];
+
+```
+
+**Unacceptable:**
+
+```objc
+// Does not fit on one line
+[[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
+    // A bunch of code
+}];
+    
+// Trying to colon-align causes wierd indentation issues    
+[[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification
+												  object:nil
+												   queue:nil
+											  usingBlock:^(NSNotification *notification) {
+											      // A bunch of code
+											  }];
+```
+
+
+###Method Declarations
+If a method declaration does not fit on one line, break the line and indent twice.  In the case of this style guide that would be a total of 8 spaces.
+
+
+
+**Acceptable:**
+
+```objc
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
+        navigationType:(UIWebViewNavigationType)navigationType {
+    // Some code
+}
+```
+
+**Unacceptable:**
+
+```objc
+// Does not fit on one line
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    // Some code
+}
+
+// Colon-align does not work in all cases
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+            navigationType:(UIWebViewNavigationType)navigationType {
+	// Some code
+}
+
+```
+
+###Variables
+If variable initialization goes over the character limit, break after the ```=``` sign
+
+**Acceptable:**
+
+```objc
+UILongPressGestureRecognizer *longTapGesture =
+        [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(simulateMemoryWarning:)];
+
+// Colon-aligning brings this example under the character limit        
+UILongPressGestureRecognizer *longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:someAction];
+        
+```
+
+**Unacceptable:**
+
+```objc
+// Colon-aligning does not bring this example under the character limit
+UILongPressGestureRecognizer *longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(simulateMemoryWarning:)];
+
+// Doesn't fit on one line
+UILongPressGestureRecognizer *longTapGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(simulateMemoryWarning:)];
+
+```
 
 ## Xcode project
 
