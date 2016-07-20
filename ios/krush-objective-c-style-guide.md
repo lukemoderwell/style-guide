@@ -682,7 +682,7 @@ Maintain a 120 character per line limit.
 
 ## Line Breaks
 
-Use line breaks to adhere to the character limit.  For methods with multiple paramenters use XCode's colon-align.
+Use line breaks to adhere to the character limit.  For methods with multiple paramenters use Xcode's colon-align.
 
 **Acceptable:**
 
