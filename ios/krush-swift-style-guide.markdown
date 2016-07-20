@@ -17,6 +17,7 @@
   * [Protocol Conformance](#protocol-conformance)
   * [Unused Code](#unused-code)
   * [Minimal Imports](#minimal-imports)
+* [Character Limit](#character-limit)
 * [Spacing](#spacing)
 * [Comments](#comments)
 * [Classes and Structures](#classes-and-structures)
@@ -268,6 +269,10 @@ override func tableView(tableView: UITableView, numberOfRowsInSection section: I
 ### Minimal Imports
 
 Keep imports minimal. For example, don't import `UIKit` when importing `Foundation` will suffice.
+
+## Character Limit
+
+Maintain a 120 character per line limit
 
 ## Spacing
 
