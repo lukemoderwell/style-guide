@@ -54,7 +54,7 @@ Consider warnings to be errors. This rule informs many stylistic decisions such 
 
 Use descriptive names with camel case for classes, methods, variables, etc. Type names (classes, structures, enumerations and protocols) should be capitalized, while method names and variables should start with a lower case letter.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 private let maximumWidgetCount = 100
@@ -65,7 +65,7 @@ class WidgetContainer {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let MAX_WIDGET_COUNT = 100
@@ -146,13 +146,13 @@ let myClass = MyModule.UsefulClass()
 
 Selectors are Obj-C methods that act as handlers for many Cocoa and Cocoa Touch APIs. Prior to Swift 2.2, they were specified using type unsafe strings. This now causes a compiler warning. The "Fix it" button replaces these strings with the **fully qualified** type safe selector. Often, however, you can use context to shorten the expression. This is the preferred style.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let sel = #selector(viewDidLoad)
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let sel = #selector(ViewController.viewDidLoad)
@@ -162,7 +162,7 @@ let sel = #selector(ViewController.viewDidLoad)
 
 Generic type parameters should be descriptive, upper camel case names. When a type name doesn't have a meaningful relationship or role, use a traditional single uppercase letter such as `T`, `U`, or `V`.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 struct Stack<Element> { ... }
@@ -170,7 +170,7 @@ func writeTo<Target: OutputStream>(inout target: Target)
 func max<T: Comparable>(x: T, _ y: T) -> T
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 struct Stack<T> { ... }
@@ -182,13 +182,13 @@ func max<Thing: Comparable>(x: Thing, _ y: Thing) -> Thing
 
 Use US English spelling to match Apple's API.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let color = "red"
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let colour = "red"
@@ -202,7 +202,7 @@ Use extensions to organize your code into logical blocks of functionality. Each 
 
  In particular, when adding protocol conformance to a model, prefer adding a separate extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 class MyViewcontroller: UIViewController {
@@ -220,7 +220,7 @@ extension MyViewcontroller: UIScrollViewDelegate {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 class MyViewcontroller: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
@@ -237,7 +237,7 @@ For UIKit view controllers, consider grouping lifecycle, custom accessors, and I
 Unused (dead) code, including Xcode template code and placeholder comments should be removed.
 This includes any empty/unused UIApplicationDelegate methods.
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 override func didReceiveMemoryWarning() {
@@ -258,7 +258,7 @@ override func tableView(tableView: UITableView, numberOfRowsInSection section: I
 ```
 
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -277,7 +277,7 @@ Keep imports minimal. For example, don't import `UIKit` when importing `Foundati
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
 
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 if user.isHappy {
@@ -287,7 +287,7 @@ if user.isHappy {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 if user.isHappy
@@ -303,7 +303,7 @@ else {
 
 * Colons always have no space on the left and one space on the right. Exceptions are the ternary operator `? :` and empty dictionary `[:]`.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 class TestDatabase: Database {
@@ -311,7 +311,7 @@ class TestDatabase: Database {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 class TestDatabase : Database {
@@ -410,7 +410,7 @@ class BoardLocation {
 
 For conciseness, if a computed property is read-only, omit the get clause. The get clause is required only when a set clause is provided.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 var diameter: Double {
@@ -418,7 +418,7 @@ var diameter: Double {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 var diameter: Double {
@@ -465,7 +465,7 @@ func reticulateSplines(spline: [Double], adjustmentFactor: Double,
 
 Use trailing closure syntax only if there's a single closure expression parameter at the end of the argument list. Give the closure parameters descriptive names.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 UIView.animateWithDuration(1.0) {
@@ -482,7 +482,7 @@ UIView.animateWithDuration(1.0,
 )
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 UIView.animateWithDuration(1.0, animations: {
@@ -520,14 +520,14 @@ let value = numbers
 
 Always use Swift's native types when available. Swift offers bridging to Objective-C so you can still use the full set of methods as needed.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let width = 120.0                                    // Double
 let widthString = (width as NSNumber).stringValue    // String
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let width: NSNumber = 120.0                          // NSNumber
@@ -544,7 +544,7 @@ Constants are defined using the `let` keyword, and variables with the `var` keyw
 
 You can define constants on a type rather than an instance of that type using type properties. To declare a type property as a constant simply use `static let`. Type properties declared in this way are generally preferred over global constants because they are easier to distinguish from instance properties. Example:
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 enum Math {
@@ -556,7 +556,7 @@ radius * Math.pi * 2 // circumference
 ```
 **Note:** The advantage of using a case-less enumeration is that it can't accidentally be instantiated and works as a pure namespace.
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let e  = 2.718281828459045235360287  // pollutes global namespace
@@ -593,7 +593,7 @@ When naming optional variables and properties, avoid naming them like `optionalS
 
 For optional binding, shadow the original name when appropriate rather than using names like `unwrappedView` or `actualLabel`.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 var subview: UIView?
@@ -605,7 +605,7 @@ if let subview = subview, volume = volume {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 var optionalSubview: UIView?
@@ -622,14 +622,14 @@ if let unwrappedSubview = optionalSubview {
 
 Use the native Swift struct initializers rather than the legacy CGGeometry constructors.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let bounds = CGRect(x: 40, y: 20, width: 120, height: 80)
 let centerPoint = CGPoint(x: 96, y: 42)
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let bounds = CGRectMake(40, 20, 120, 80)
@@ -664,7 +664,7 @@ private func makeLocationManager() -> CLLocationManager {
 
 Prefer compact code and let the compiler infer the type for constants or variables of single instances. Type inference is also appropriate for small (non-empty) arrays and dictionaries. When required, specify the specific type such as `CGFloat` or `Int16`.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let message = "Click the button"
@@ -673,7 +673,7 @@ var names = ["Mic", "Sam", "Christine"]
 let maximumWidth: CGFloat = 106.5
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let message: String = "Click the button"
@@ -685,14 +685,14 @@ let names = [String]()
 
 For empty arrays and dictionaries, use type annotation. (For an array or dictionary assigned to a large, multi-line literal, use type annotation.)
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 var names: [String] = []
 var lookup: [String: Int] = [:]
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 var names = [String]()
@@ -706,7 +706,7 @@ var lookup = [String: Int]()
 
 Prefer the shortcut versions of type declarations over the full generics syntax.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 var deviceModels: [String]
@@ -714,7 +714,7 @@ var employees: [Int: String]
 var faxNumber: Int?
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 var deviceModels: Array<String>
@@ -791,7 +791,7 @@ resource.request().onComplete { [weak self] response in
 
 Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 class TimeMachine {  
@@ -799,7 +799,7 @@ class TimeMachine {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 class TimeMachine {  
@@ -811,7 +811,7 @@ class TimeMachine {
 
 When coding with conditionals, the left hand margin of the code should be the "golden" or "happy" path. That is, don't nest `if` statements. Multiple return statements are OK. The `guard` statement is built for this.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
@@ -825,7 +825,7 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
@@ -846,14 +846,14 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 
 When multiple optionals are unwrapped either with `guard` or `if let`, minimize nesting by using the compound version when possible. Example:
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 guard let number1 = number1, number2 = number2, number3 = number3 else { fatalError("impossible") }
 // do something with numbers
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 if let number1 = number1 {
@@ -886,13 +886,13 @@ Do not write multiple statements on a single line separated with semicolons.
 
 The only exception to this rule is the `for-conditional-increment` construct, which requires semicolons. However, alternative `for-in` constructs should be used where possible.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 let swift = "not a scripting language"
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 let swift = "not a scripting language";
@@ -904,7 +904,7 @@ let swift = "not a scripting language";
 
 Parentheses around conditionals are not required and should be omitted.
 
-**Preferred:**
+**Acceptable:**
 
 ```swift
 if name == "Hello" {
@@ -912,7 +912,7 @@ if name == "Hello" {
 }
 ```
 
-**Not Preferred:**
+**Unacceptable:**
 
 ```swift
 if (name == "Hello") {
