@@ -583,13 +583,13 @@ Use implicitly unwrapped types declared with `!` only for instance variables tha
 When accessing an optional value, use optional chaining if the value is only accessed once or if there are many optionals in the chain:
 
 ```swift
-self.textContainer?.textLabel?.setNeedsDisplay()
+textContainer?.textLabel?.setNeedsDisplay()
 ```
 
 Use optional binding when it's more convenient to unwrap once and perform multiple operations:
 
 ```swift
-if let textContainer = self.textContainer {
+if let textContainer = textContainer {
     // do many things with textContainer
 }
 ```
@@ -649,7 +649,7 @@ Prefer the struct-scope constants `CGRect.infinite`, `CGRect.null`, etc. over gl
 Consider using lazy initialization for finer grain control over object lifetime. This is especially true for `UIViewController` that loads views lazily. You can either use a closure that is immediately called `{ }()` or call a private factory method. Example:
 
 ```swift
-lazy var locationManager: CLLocationManager = self.makeLocationManager()
+lazy var locationManager: CLLocationManager = makeLocationManager()
 
 private func makeLocationManager() -> CLLocationManager {
     let manager = CLLocationManager()
