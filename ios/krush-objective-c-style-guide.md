@@ -739,6 +739,32 @@ void (^myBlock)(NSNotification *) = ^(NSNotification *notification) {
 ```
 
 
+If the block is still too long when you define it, break after the operator and indent once:
+
+**Acceptable:**
+
+```objc
+void (^completion)(UITextField *, NSString *, EValidateError) =
+    ^void(UITextField *errorField, NSString *errorCode, EValidateError errorType) {
+        // Code code code
+        // Code code code
+        // Code code code
+};
+
+```
+
+**Unacceptable:**
+
+```objc
+void (^completion)(UITextField *, NSString *, EValidateError) = ^void(UITextField *errorField, NSString *errorCode, EValidateError errorType) {
+    // Code code code
+    // Code code code
+    // Code code code
+};
+
+```
+
+
 ###Method Declarations
 If a method declaration does not fit on one line, break the line and indent twice.  In the case of this style guide that would be a total of 8 spaces.
 
