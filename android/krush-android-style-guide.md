@@ -467,7 +467,7 @@ __Note 2__: If we provide the methods described above, the keys for extras and a
 
 ### 2.2.12 Line length limit
 
-Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
+Code lines should not exceed __121 characters__. If the line is longer than this limit there are usually two options to reduce its length:
 
 * Extract a local variable or method (preferable).
 * Apply line-wrapping to divide a single line into multiple ones.
