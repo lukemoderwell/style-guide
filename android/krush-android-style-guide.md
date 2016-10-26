@@ -36,6 +36,7 @@
     - [2.2.12 Line length limit](#2212-line-length-limit)
       - [2.2.12.1 Line-wrapping strategies](#22121-line-wrapping-strategies)
     - [2.2.13 Increment/Decrement Operators](#2213-incrementdecrement-operators)
+    - [2.2.14 Conditional Statements] (#2214-conditional-statements)
   - [2.3 XML style rules](#23-xml-style-rules)
     - [2.3.1 Resources naming](#231-resources-naming)
       - [2.3.1.1 ID naming](#2311-id-naming)
@@ -528,6 +529,32 @@ for (int i = 0; i < 10; i ++) {
 }
 ```
 
+### 2.2.14 Conditional Statements
+
+Use appropriate conditional statements for the task at hand. We should prefer `if/else` statements in cases where the result is binary, regardless of the number of conditions.
+
+This is __good__:
+```java
+if (mColor == Color.GREEN || mColor == Color.BLUE || mColor == Color.RED) {
+    return true;
+} else {
+    return false;
+}
+```
+
+Use of `switch`'s fallthrough for binary results is __discouraged__:
+```java
+switch (mColor) {
+    case Color.GREEN:
+    case Color.BLUE:
+    case Color.RED:
+        return true;
+    default:
+        return false;
+}
+```
+
+For non-binary results, use your best judgment for `if/else/else if` and `switch/case`.
 
 ## 2.3 XML style rules
 
