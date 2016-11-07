@@ -17,6 +17,7 @@
   * [Protocol Conformance](#protocol-conformance)
   * [Unused Code](#unused-code)
   * [Minimal Imports](#minimal-imports)
+* [Project Organization] (#project-organization)
 * [Character Limit](#character-limit)
 * [Spacing](#spacing)
 * [Comments](#comments)
@@ -269,6 +270,12 @@ override func tableView(tableView: UITableView, numberOfRowsInSection section: I
 ### Minimal Imports
 
 Keep imports minimal. For example, don't import `UIKit` when importing `Foundation` will suffice.
+
+## Project Organization
+
+It is beneficial to keep your file system hiearchy in-line with your project hiearchy. In order to achieve this, whenever you create a new group in Xcode, make sure that its location is selected in the file system. There is a setting in the File Inspector which allows you to select the folder location for that group.
+
+Always try to create a group prior to any sub-files, as the Relative to Group setting will automatically create the sub-files within the appropriate folder in your file system. If you do create a group after-the-fact, you will need to perform some manual moving of files in the file system.
 
 ## Character Limit
 
