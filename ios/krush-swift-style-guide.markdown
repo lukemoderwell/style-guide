@@ -83,15 +83,19 @@ Abbreviations and acronyms should generally be avoided. Following the [API Desig
 **Preferred**
 
 ```swift
-let urlString: URLString
-let userID: UserID
+let urlString: URLString // URL is an acronym for Uniform Resource Locator
+let krushURL: URL // URL is an acronym for Uniform Resource Locator
+let hardwareCPU: HardwareCPU // CPU is an initialism for Central Processing Unit
+let userId: UserId // Id is an abbreviation short for Identifier, not an acronym
 ```
 
 **Not Preferred**
 
 ```swift
-let uRLString: UrlString
-let userId: UserId
+let uRLString: UrlString // URL is an acronym for Uniform Resource Locator
+let krushUrl: URL // URL is an acronym for Uniform Resource Locator
+let hardwareCpu: HardwareCpu // CPU is an initialism for Central Processing Unit
+let userID: UserID // Id is an abbreviation short for Identifier, not an acronym or initialism
 ```
 
 For functions and init methods, prefer named parameters for all arguments unless the context is very clear. Include external parameter names if it makes function calls more readable.
