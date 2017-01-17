@@ -42,6 +42,7 @@
       - [2.3.1.1 ID naming](#2311-id-naming)
       - [2.3.1.2 Strings](#2312-strings)
       - [2.3.1.3 Styles and Themes](#2313-styles-and-themes)
+      - [2.3.1.4 Colors](#2314-colors)
     - [2.3.2 Attributes ordering](#232-attributes-ordering)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -610,6 +611,10 @@ String names start with a prefix that identifies the section they belong to. For
 #### 2.3.1.3 Styles and Themes
 
 Unless the rest of resources, style names are written in __UpperCamelCase__.
+
+#### 2.3.1.4 Colors
+
+When naming colors, the percentage of opacity should be appended to the color name to delineate between multiple variations of a semitransparent color. For instance, black with 50% alpha (`#80000000`) could be named `black_50`. Solid colors can drop this specification, leaving simply `black`.
 
 ### 2.3.2 Attributes ordering
 
