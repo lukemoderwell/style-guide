@@ -52,7 +52,7 @@ Here are some common things to look for when reviewing a PR.
 - [ ] For iOS, forced unwrapping of Optional properties
 - [ ] For iOS, misplaced views in Storyboard
 - [ ] Tests failing
-- [ ] Style non-conformance (In most cases, this is not worthy of blocking a PR - unless it's aggregious)
+- [ ] Style non-conformance (In most cases, this is not worthy of blocking a PR - unless it's egregious)
 
 ## Merging
 
