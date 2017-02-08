@@ -47,10 +47,12 @@ Here are some common things to look for when reviewing a PR.
 - [ ] Potential memory leaks
 - [ ] Logic checks that are overly complicated or don't make sense
 - [ ] Variables that could potentially be null or nil and aren't handled properly
+- [ ] Have tests been written?
+- [ ] Unnecessary files commited (e.g. merge files - .orig)
 - [ ] For iOS, forced unwrapping of Optional properties
 - [ ] For iOS, misplaced views in Storyboard
 - [ ] Tests failing
-- [ ] Style non-conformance
+- [ ] Style non-conformance (In most cases, this is not worthy of blocking a PR - unless it's aggregious)
 
 ## Merging
 
