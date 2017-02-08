@@ -37,6 +37,8 @@ This is less of a style thing and more of a process thing, but I figured it shou
 
 Github's review process is pretty good, but requires some manual management to fit how we do things. When you open a PR, make sure to assign two reviewers (and let them know you assigned them). When you push a change to an open PR, remove any existing reviews (both Approvals and Changes Required).
 
+If you are the second of the two assigned approvers to approve the PR, move its associated ticket into Testing.
+
 
 ## Merging
 
