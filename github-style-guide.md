@@ -7,6 +7,7 @@ As Github users, we want to ensure our commit messages and PR requests follow si
 * [Commit Messages](#commit-messages)
 * [Pull Requests](#pull-requests)
 * [Review Process](#review-process)
+* [Review Checklist](#review-checklist)
 * [Merging](#merging)
 
 ## Commit Messages
@@ -39,10 +40,20 @@ Github's review process is pretty good, but requires some manual management to f
 
 If you are the second of the two assigned approvers to approve the PR, move its associated ticket into Testing.
 
+## Review Checklist
+
+Here are some common things to look for when reviewing a PR.
+
+- [ ] Potential memory leaks
+- [ ] Logic checks that are overly complicated or don't make sense
+- [ ] Variables that could potentially be null or nil and aren't handled properly
+- [ ] For iOS, forced unwrapping of Optional properties
+- [ ] For iOS, misplaced views in Storyboard
+- [ ] Tests failing
+- [ ] Style non-conformance
 
 ## Merging
 
 When merging master into your branch (in case of conflicts), you can either `git merge` or `git rebase` - it is up to the developer.
 
 When merging a PR into master, always `Squash & Merge`. Review all the commits and remove any that you think are unnecessary - things like `Code fixes` or `Merge conflicts` aren't really needed in the history.
-
