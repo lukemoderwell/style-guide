@@ -69,7 +69,7 @@ Finally, properties are what give the selected elements of a rule declaration th
   * Use a single underscore for BEM elements. E.g. .block_element instead of .block__element.
 * Do not use ID selectors for CSS styling.
 * Avoid using HTML tags in CSS selectors.
-  * Exceptions can be made for ```html``` tags that are more semantic like ```article``` or ```input``` but use your best judgment. 
+  * Exceptions can be made for `html` tags that are more semantic like `article` or `input` but use your best judgment. 
 * Don't nest more than 3 levels deep (Specificity issues).
 * Avoid nesting unless it's for pseudo selectors (i.e. :hover, :focus, etc), pseudo elements (i.e. ::before, ::after), and state selectors (.button--active). 
 * When using multiple selectors in a rule declaration, give each selector its own line.
