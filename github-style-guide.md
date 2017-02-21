@@ -1,13 +1,11 @@
 # Github style guide
 
-As Github users, we want to ensure our commit messages and PR requests follow similar guidelines across all work.
+As Github users, we want to ensure our commit messages and PR requests follow similar guidelines across all work. For process specifics, refer to our Confluence doc.
 
 ## Table of Contents
 
 * [Commit Messages](#commit-messages)
 * [Pull Requests](#pull-requests)
-* [Review Process](#review-process)
-* [Merging](#merging)
 
 ## Commit Messages
 
@@ -30,19 +28,3 @@ Similar to commit messages, make sure to include your JIRA ticket number in the 
 ```
 PROJ-123:  Making a thing do a thing.
 ```
-
-## Review Process
-
-This is less of a style thing and more of a process thing, but I figured it should live here with the other Github stuff.
-
-Github's review process is pretty good, but requires some manual management to fit how we do things. When you open a PR, make sure to assign two reviewers (and let them know you assigned them). When you push a change to an open PR, remove any existing reviews (both Approvals and Changes Required).
-
-If you are the second of the two assigned approvers to approve the PR, move its associated ticket into Testing.
-
-
-## Merging
-
-When merging master into your branch (in case of conflicts), you can either `git merge` or `git rebase` - it is up to the developer.
-
-When merging a PR into master, always `Squash & Merge`. Review all the commits and remove any that you think are unnecessary - things like `Code fixes` or `Merge conflicts` aren't really needed in the history.
-
