@@ -65,15 +65,16 @@ Finally, properties are what give the selected elements of a rule declaration th
 
 * Use soft tabs (4 spaces) for indentation.
 * Prefer dashes over camelCasing in class names.
-  - Underscores and PascalCasing are okay if you are using BEM (see [OOCSS and BEM](#oocss-and-bem) below).
-  - Use a single underscore for BEM elements. E.g. .block_element instead of .block__element.
+  * Underscores and PascalCasing are okay if you are using BEM (see [OOCSS and BEM](#oocss-and-bem) below).
+  * Use a single underscore for BEM elements. E.g. .block_element instead of .block__element.
 * Do not use ID selectors for CSS styling.
 * Avoid using HTML tags in CSS selectors.
-* Don't next more than 3 levels deep (Specificity issues).
-* Avoid nesting unless it's for pseudo selectors (i.e. :hover, :focus, etc) and state selectors (.button--active). 
+  * Exceptions can be made for ```html``` tags that are more semantic like ```article``` or ```input``` but use your best judgment. 
+* Don't nest more than 3 levels deep (Specificity issues).
+* Avoid nesting unless it's for pseudo selectors (i.e. :hover, :focus, etc), pseudo elements (i.e. ::before, ::after), and state selectors (.button--active). 
 * When using multiple selectors in a rule declaration, give each selector its own line.
 * Put a space before the opening brace `{` in rule declarations.
-* In properties, put a space after, but not before, the `:` character.
+* In properties, put a space after, but not before, the `:` character and end every property with a `;`.
 * Put closing braces `}` of rule declarations on a new line.
 * Put blank lines between rule declarations.
 
@@ -143,9 +144,9 @@ function ListingCard() {
   return (
     <article class="ListingCard ListingCard--featured">
 
-      <h1 class="ListingCard__title">Adorable 2BR in the sunny Mission</h1>
+      <h1 class="ListingCard_title">Adorable 2BR in the sunny Mission</h1>
 
-      <div class="ListingCard__content">
+      <div class="ListingCard_content">
         <p>Vestibulum id ligula porta felis euismod semper.</p>
       </div>
 
@@ -158,12 +159,12 @@ function ListingCard() {
 /* ListingCard.css */
 .ListingCard { }
 .ListingCard--featured { }
-.ListingCard__title { }
-.ListingCard__content { }
+.ListingCard_title { }
+.ListingCard_content { }
 ```
 
   * `.ListingCard` is the “block” and represents the higher-level component
-  * `.ListingCard__title` is an “element” and represents a descendant of `.ListingCard` that helps compose the block as a whole.
+  * `.ListingCard_title` is an “element” and represents a descendant of `.ListingCard` that helps compose the block as a whole.
   * `.ListingCard--featured` is a “modifier” and represents a different state or variation on the `.ListingCard` block.
 
 ### ID selectors
@@ -174,7 +175,7 @@ For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2
 
 ### Border
 
-Use `0` instead of `none` to specify that a style has no border.
+Use `0` instead of `none` to specify that a style has no border. Using `0` will set `border-width: 0;` while `none` will set `border-style: none;`. `0` is [preferred](http://stackoverflow.com/questions/2922909/should-i-use-border-none-or-border-0) because it's shorter.
 
 **Bad**
 
@@ -201,7 +202,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
 ### Ordering of property declarations
 
-1. @ rules that aren't @include (see #9)
+1. @ rules that aren't @include (see #6)
 2. Layout / box-model properties - e.g. margin, padding, box-sizing, position, overflow, width, etc.
 3. Typographic properties - e.g. line-height, letter-spacing, text-size, etc.
 4. Cosmetic properties - e.g. color, background-*, animation, border, etc.
@@ -247,8 +248,6 @@ An example:
   &--active {
     border: 1px solid red;
   }
-  
-  @include
   
   .child {
     margin-left: 20px;
