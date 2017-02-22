@@ -1,31 +1,142 @@
-# Krush React, JSX, and html Style Guide
+# Krush React, JSX, and Html Style Guide
 
-Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react) and http://codeguide.co/#html
 
 ## Table of Contents
 
   1. [Basic Rules](#basic-rules)
-  1. [Class vs `React.createClass` vs stateless](#class-vs-reactcreateclass-vs-stateless)
-  1. [Naming](#naming)
-  1. [Declaration](#declaration)
-  1. [Alignment](#alignment)
-  1. [Quotes](#quotes)
-  1. [Spacing](#spacing)
-  1. [Props](#props)
-  1. [Refs](#refs)
-  1. [Parentheses](#parentheses)
-  1. [Tags](#tags)
-  1. [Methods](#methods)
-  1. [Ordering](#ordering)
-  1. [`isMounted`](#ismounted)
+  1. [HTML](#html)
+    1. [Be Semanitc](#be-semantic)
+    1. [Tags](#tags)
+    1. [Naming](#naming)
+    1. [Attribute Order](#attribute-order)
+  1. [React](#react)
+    1. [Class vs `React.createClass` vs stateless](#class-vs-reactcreateclass-vs-stateless)
+    1. [Code Naming](#code-naming)
+    1. [Declaration](#declaration)
+    1. [Alignment](#alignment)
+    1. [Quotes](#quotes)
+    1. [Spacing](#spacing)
+    1. [Props](#props)
+    1. [Refs](#refs)
+    1. [Parentheses](#parentheses)
+    1. [Methods](#methods)
+    1. [Ordering](#ordering)
+    1. [`isMounted`](#ismounted)
 
-## Basic Rules
+# Basic Rules
 
+  - Use 4-space soft indentations
   - Only include one React component per file.
     - However, multiple [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) are allowed per file.
     <!-- eslint: [`react/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md#ignorestateless). -->
   - Always use JSX syntax.
-  - Do not use `React.createElement` unless you're initializing the app from a file that is not JSX.
+
+# HTML
+
+## Be Semantic
+
+Html 5 provides special tags that provide additional descriptive meaning, such as `header`, `aside`, and `main`.
+Use these semantic tags whenever they fit to better define your markup.
+[More Details](https://www.w3.org/wiki/HTML_structural_elements)
+
+```jsx
+//bad
+<body>
+    <div id="header">
+        <!-- header content goes in here -->
+    </div>
+    <div id="sidebar">
+        <!-- sidebar content goes in here -->
+    </div>
+    <div id="main">
+        <!-- main page content goes in here -->
+    </div>
+</body>
+
+//good
+<body>
+    <header>
+        <!-- header content goes in here -->
+    </header>
+    <section id="sidebar">
+        <!-- sidebar content goes in here -->
+    </section>
+    <main>
+        <!-- main page content goes in here -->
+    </main>
+</body>
+```
+
+## Tags
+
+  - Always self-close tags that have no children.
+  <!-- eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) -->
+
+    ```jsx
+    // bad
+    <Foo className="stuff"></Foo>
+
+    // good
+    <Foo className="stuff" />
+    ```
+
+  - If your component has multi-line properties and children, close its tag on a new line to separate properties from children.
+  <!-- eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) -->
+
+    ```jsx
+    // bad
+    <Foo
+        bar="bar"
+        baz="baz"
+    />
+
+    // good
+    <Foo
+        bar="bar"
+        baz="baz" />
+
+    // bad
+    <Foo
+        bar="bar"
+        baz="baz">
+        <Quux />
+    </Foo>
+
+    // good
+    <Foo
+        bar="bar"
+        baz="baz"
+    >
+        <Quux />
+    </Foo>
+    ```
+
+## Naming
+
+Use "dash-case" rather than camelCase or similar in `class`, `id`, `name`, and any other applicable attributes.
+This includes any custom `data-*` attributes and their values, when appropriate. See [The CSS guide](./krush-css-style-guide.md) for exceptions.
+
+```jsx
+// bad
+<Foo bar="Bar" data-bazBazBaz="baz" />
+
+// good
+<Foo bar="bar" data-baz-baz-baz="baz" />
+```
+
+## Attribute Order
+
+HTML attributes should come in this particular order for easier reading of code.
+
+  - `class`
+  - `id`, `name`
+  - `data-*`
+  - `src`, `for`, `type`, `href`, `value`
+  - `title`, `alt`
+  - `role`, `aria-*`
+
+# React
 
 ## Class vs `React.createClass` vs stateless
 
@@ -71,7 +182,7 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
     }
     ```
 
-## Naming
+## Code Naming
 
   - **Extensions**: Use `.tsx` extension for React components written in TypeScript.
   - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.tsx`.
@@ -168,12 +279,12 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
     ```jsx
     // bad
     <Foo superLongParam="bar"
-         anotherSuperLongParam="baz" />
+        anotherSuperLongParam="baz" />
 
     // good
     <Foo
-      superLongParam="bar"
-      anotherSuperLongParam="baz"
+        superLongParam="bar"
+        anotherSuperLongParam="baz"
     />
 
     // if props fit in one line then keep it on the same line
@@ -181,10 +292,9 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
 
     // children get indented normally
     <Foo
-      superLongParam="bar"
-      anotherSuperLongParam="baz"
-    >
-      <Quux />
+            superLongParam="bar"
+            anotherSuperLongParam="baz">
+        <Quux />
     </Foo>
     ```
 
@@ -238,6 +348,9 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
 
     // good
     <Foo bar={baz} />
+
+    // good
+    <Foo bar={{ baz: biz }} />
     ```
 
 ## Props
@@ -273,7 +386,7 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
     />
     ```
 
-  - Always include an `alt` prop on `<img>` tags. If the image is presentational, `alt` can be an empty string or the `<img>` must have `role="presentation"`.
+  - Always include an `alt` prop on `<img>` tags. If the image is presentational, the `<img>` must have `role="presentation"`.
   <!-- eslint: [`jsx-a11y/img-has-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-has-alt.md) -->
 
     ```jsx
@@ -283,7 +396,7 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
     // good
     <img src="hello.jpg" alt="Me waving hello" />
 
-    // good
+    // bad
     <img src="hello.jpg" alt="" />
 
     // good
@@ -352,32 +465,6 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
 
   - Avoid React propTypes and defaultProps in favor of TypeScript Interfaces and default values
 
-  <!-- ```jsx
-  // bad
-  function SFC({ foo, bar, children }) {
-    return <div>{foo}{bar}{children}</div>;
-  }
-  SFC.propTypes = {
-    foo: PropTypes.number.isRequired,
-    bar: PropTypes.string,
-    children: PropTypes.node,
-  };
-
-  // good
-  function SFC({ foo, bar }) {
-    return <div>{foo}{bar}</div>;
-  }
-  SFC.propTypes = {
-    foo: PropTypes.number.isRequired,
-    bar: PropTypes.string,
-    children: PropTypes.node,
-  };
-  SFC.defaultProps = {
-    bar: '',
-    children: null,
-  };
-  ``` -->
-
 ## Refs
 
   - Always use ref callbacks instead of strings. Use ref sparingly.
@@ -422,35 +509,6 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
       const body = <div>hello</div>;
       return <MyComponent>{body}</MyComponent>;
     }
-    ```
-
-## Tags
-
-  - Always self-close tags that have no children.
-  <!-- eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md) -->
-
-    ```jsx
-    // bad
-    <Foo className="stuff"></Foo>
-
-    // good
-    <Foo className="stuff" />
-    ```
-
-  - If your component has multi-line properties, close its tag on a new line. (Disputed)
-  <!-- eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) -->
-
-    ```jsx
-    // bad
-    <Foo
-      bar="bar"
-      baz="baz" />
-
-    // good
-    <Foo
-      bar="bar"
-      baz="baz"
-    />
     ```
 
 ## Methods
@@ -521,7 +579,7 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
   1. `componentWillUpdate`
   1. `componentDidUpdate`
   1. `componentWillUnmount`
-  1. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
+  1. *clickHandlers or eventHandlers* like `handleClickSubmit()` or `handleChangeDescription()`
   1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
   1. *optional render methods* like `renderNavigation()` or `renderProfilePicture()`
   1. `render`
