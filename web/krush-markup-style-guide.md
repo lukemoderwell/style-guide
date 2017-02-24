@@ -8,15 +8,14 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
   1. [HTML](#html)
     1. [Be Semanitc](#be-semantic)
     1. [Tags](#tags)
+      1. [Alignment](#alignment)
     1. [Naming](#naming)
     1. [Attribute Order](#attribute-order)
   1. [React](#react)
     1. [Class vs `React.createClass` vs stateless](#class-vs-reactcreateclass-vs-stateless)
     1. [Code Naming](#code-naming)
     1. [Declaration](#declaration)
-    1. [Alignment](#alignment)
     1. [Quotes](#quotes)
-    1. [Spacing](#spacing)
     1. [Props](#props)
     1. [Refs](#refs)
     1. [Parentheses](#parentheses)
@@ -82,36 +81,99 @@ Use these semantic tags whenever they fit to better define your markup.
     <Foo className="stuff" />
     ```
 
-  - If your component has multi-line properties and children, close its tag on a new line to separate properties from children.
-  <!-- eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) -->
+  - Always include a single space in single-line self-closing tags. Don't include the space for regular tags.
+  <!-- eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md) -->
 
     ```jsx
     // bad
-    <Foo
-        bar="bar"
-        baz="baz"
-    />
+    <Foo/>
 
-    // good
-    <Foo
-        bar="bar"
-        baz="baz" />
+    // very bad
+    <Foo                 />
 
     // bad
     <Foo
-        bar="bar"
-        baz="baz">
-        <Quux />
-    </Foo>
+     />
 
     // good
-    <Foo
-        bar="bar"
-        baz="baz"
-    >
-        <Quux />
-    </Foo>
+    <Foo />
+
+    // bad
+    <Foo > ... </Foo>
+
+    // good
+    <Foo> ... </Foo>
     ```
+
+### Alignment
+
+  - Whenever practical, keep an entire tag on one line. If the properties are too long or many, follow these alignment styles:
+    - start properties on the next line after the tag, indented once
+    - place the end of a self-closing tag on its own line
+    - End an opening tag (e.g., `>` of `<div>`) on the same line of the last property
+    - Leave an empty line between properties and children
+
+```jsx
+// ideal (all props in line with tag)
+<div id="prop" className="prop">
+    <span id="prop" className="prop" />
+    <span id="ha" />
+</div>
+
+// bad (> belongs on previous line)
+<div
+    id="prop"
+    className="prop"
+>
+    <span
+        id="prop"
+        className="prop"
+    />
+    <span id="ha" />
+</div>
+
+// bad (missing space between props and children)
+<div
+    id="prop"
+    className="prop">
+    <span
+        id="prop"
+        className="prop" />
+
+    <span id="ha" />
+</div>
+
+// bad (extra indentation for props)
+<div
+        id="prop"
+        className="prop" >
+    <span
+        id="prop"
+        className="prop" />
+    <span id="ha" />
+</div>
+
+// bad (first prop belongs on new line)
+<div id="prop"
+     className="prop" >
+    <span
+        id="prop"
+        className="prop" />
+    <span id="ha" />
+</div>
+
+// good
+<div
+    id="prop"
+    className="prop">
+
+    <span
+        id="prop"
+        className="prop"
+    />
+    <span id="ha" />
+</div>
+```
 
 ## Naming
 
@@ -271,88 +333,7 @@ HTML attributes should come in this particular order for easier reading of code.
     export default class ReservationCard extends React.Component {
     }
     ```
-
-## Alignment
-
-  - Whenever practical, keep an entire tag on one line. If the properties are too long or many, follow these alignment styles:
-  <!-- eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) -->
-    - start properties on the next line after the tag, indented once
-    - place the end of a self-closing tag on its own line
-    - End an opening tag (e.g., `>` of `<div>`) on the same line of the last property
-    - Leave an empty line between properties and children
-
-    ```jsx
-    // ideal (all props in line with tag)
-    <div id="prop" className="prop">
-        <span id="prop" className="prop" />
-        <span id="ha" />
-    </div>
-
-    // bad
-    <Foo superLongParam="bar"
-        anotherSuperLongParam="baz" />
-
-    // good
-    <Foo
-        superLongParam="bar"
-        anotherSuperLongParam="baz"
-    />
-
-    // bad (> belongs on previous line)
-    <div
-        id="prop"
-        className="prop"
-    >
-        <span
-            id="prop"
-            className="prop"
-        />
-        <span id="ha" />
-    </div>
-
-    // bad (missing space between props and children)
-    <div
-        id="prop"
-        className="prop">
-        <span
-            id="prop"
-            className="prop" />
-
-        <span id="ha" />
-    </div>
-
-    // bad (extra indentation for props)
-    <div
-            id="prop"
-            className="prop" >
-        <span
-            id="prop"
-            className="prop" />
-        <span id="ha" />
-    </div>
-
-    // bad (first prop belongs on new line)
-    <div id="prop"
-         className="prop" >
-        <span
-            id="prop"
-            className="prop" />
-        <span id="ha" />
-    </div>
-
-    // good
-    <div
-        id="prop"
-        className="prop">
-
-        <span
-            id="prop"
-            className="prop"
-        />
-        <span id="ha" />
-    </div>
-    ```
-
+    
 ## Quotes
 
   - Always use double quotes (`"`) for JSX attributes, but single quotes (`'`) for all other JS.
@@ -372,32 +353,6 @@ HTML attributes should come in this particular order for easier reading of code.
 
     // good
     <Foo style={{ left: '20px' }} />
-    ```
-
-## Spacing
-
-  - Always include a single space in your self-closing tag. Don't include the space for regular tags.
-  <!-- eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md) -->
-
-    ```jsx
-    // bad
-    <Foo/>
-
-    // very bad
-    <Foo                 />
-
-    // bad
-    <Foo
-     />
-
-    // good
-    <Foo />
-
-    // bad
-    <Foo >
-
-    // good
-    <Foo>
     ```
 
   - Do not pad JSX curly braces with spaces (but do still pad JS object braces).
