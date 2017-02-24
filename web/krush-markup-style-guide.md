@@ -22,6 +22,7 @@ Adapted from [Airbnb's React/JSX Style Guide](https://github.com/airbnb/javascri
     1. [Parentheses](#parentheses)
     1. [Methods](#methods)
     1. [Ordering](#ordering)
+    1. [Render Efficiently](#render-efficiently)
     1. [`isMounted`](#ismounted)
 
 # Basic Rules
@@ -59,7 +60,7 @@ Use these semantic tags whenever they fit to better define your markup.
     <header>
         <!-- header content goes in here -->
     </header>
-    <section id="sidebar">
+    <section class="sidebar">
         <!-- sidebar content goes in here -->
     </section>
     <main>
@@ -140,7 +141,7 @@ HTML attributes should come in this particular order for easier reading of code.
 
 ## Class vs `React.createClass` vs stateless
 
-  - If you have internal state and/or refs, prefer `class extends React.Component` over `React.createClass` unless you have a very good reason to use mixins.
+  - If you have internal state and/or refs, prefer `class extends React.Component` over `React.createClass` unless you have a very good reason to use mixins. Extend `React.PureComponent` when appropriate, or use a Stateless Functional Component for small, reusable components.
   <!-- eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) [`react/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md) -->
 
     ```jsx
@@ -273,10 +274,20 @@ HTML attributes should come in this particular order for easier reading of code.
 
 ## Alignment
 
-  - Follow these alignment styles for JSX syntax.
+  - Whenever practical, keep an entire tag on one line. If the properties are too long or many, follow these alignment styles:
   <!-- eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md) -->
+    - start properties on the next line after the tag, indented once
+    - place the end of a self-closing tag on its own line
+    - End an opening tag (e.g., `>` of `<div>`) on the same line of the last property
+    - Leave an empty line between properties and children
 
     ```jsx
+    // ideal (all props in line with tag)
+    <div id="prop" className="prop">
+        <span id="prop" className="prop" />
+        <span id="ha" />
+    </div>
+
     // bad
     <Foo superLongParam="bar"
         anotherSuperLongParam="baz" />
@@ -287,15 +298,59 @@ HTML attributes should come in this particular order for easier reading of code.
         anotherSuperLongParam="baz"
     />
 
-    // if props fit in one line then keep it on the same line
-    <Foo bar="bar" />
+    // bad (> belongs on previous line)
+    <div
+        id="prop"
+        className="prop"
+    >
+        <span
+            id="prop"
+            className="prop"
+        />
+        <span id="ha" />
+    </div>
 
-    // children get indented normally
-    <Foo
-            superLongParam="bar"
-            anotherSuperLongParam="baz">
-        <Quux />
-    </Foo>
+    // bad (missing space between props and children)
+    <div
+        id="prop"
+        className="prop">
+        <span
+            id="prop"
+            className="prop" />
+
+        <span id="ha" />
+    </div>
+
+    // bad (extra indentation for props)
+    <div
+            id="prop"
+            className="prop" >
+        <span
+            id="prop"
+            className="prop" />
+        <span id="ha" />
+    </div>
+
+    // bad (first prop belongs on new line)
+    <div id="prop"
+         className="prop" >
+        <span
+            id="prop"
+            className="prop" />
+        <span id="ha" />
+    </div>
+
+    // good
+    <div
+        id="prop"
+        className="prop">
+
+        <span
+            id="prop"
+            className="prop"
+        />
+        <span id="ha" />
+    </div>
     ```
 
 ## Quotes
@@ -321,7 +376,7 @@ HTML attributes should come in this particular order for easier reading of code.
 
 ## Spacing
 
-  - Always include a single space in your self-closing tag.
+  - Always include a single space in your self-closing tag. Don't include the space for regular tags.
   <!-- eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md) -->
 
     ```jsx
@@ -337,6 +392,12 @@ HTML attributes should come in this particular order for easier reading of code.
 
     // good
     <Foo />
+
+    // bad
+    <Foo >
+
+    // good
+    <Foo>
     ```
 
   - Do not pad JSX curly braces with spaces (but do still pad JS object braces).
@@ -567,9 +628,8 @@ HTML attributes should come in this particular order for easier reading of code.
 
 ## Ordering
 
-  - Ordering for `class extends React.Component`:
+Most components will have only a few members. For clarity, order those members according to this list:
 
-  1. optional `static` methods
   1. `constructor`
   1. `getChildContext`
   1. `componentWillMount`
@@ -583,31 +643,13 @@ HTML attributes should come in this particular order for easier reading of code.
   1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
   1. *optional render methods* like `renderNavigation()` or `renderProfilePicture()`
   1. `render`
+  1. `static` methods
 
-  - Ordering for `React.createClass`:
-  <!-- eslint: [`react/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md) -->
+## Render Efficiently
 
-  1. `displayName`
-  1. `propTypes`
-  1. `contextTypes`
-  1. `childContextTypes`
-  1. `mixins`
-  1. `statics`
-  1. `defaultProps`
-  1. `getDefaultProps`
-  1. `getInitialState`
-  1. `getChildContext`
-  1. `componentWillMount`
-  1. `componentDidMount`
-  1. `componentWillReceiveProps`
-  1. `shouldComponentUpdate`
-  1. `componentWillUpdate`
-  1. `componentDidUpdate`
-  1. `componentWillUnmount`
-  1. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
-  1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
-  1. *optional render methods* like `renderNavigation()` or `renderProfilePicture()`
-  1. `render`
+Nearly all components should be "pure" and extend `React.PureComponent`. Be careful about mutable state in such cases, as this will shallow-compare state and props. With impure components, use shouldComponentUpdate to optimize React's render process if practical. Use "[stateless functional components][stateless]" for small, simple components that have no state.
+
+[stateless]:https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components
 
 ## `isMounted`
 
