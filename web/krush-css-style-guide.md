@@ -173,6 +173,10 @@ While it is possible to select elements by ID in CSS, it should generally be con
 
 For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/) on dealing with specificity.
 
+### Viewport Units vs Percentage.
+
+Don't use viewport units unless you have to. If you have to, using `vh` can be more helpful than `%` when defining a height but `%` is generally better than `vw` for widths. [Source](https://bitsofco.de/viewport-vs-percentage-units/)
+
 ### Border
 
 Use `0` instead of `none` to specify that a style has no border. Using `0` will set `border-width: 0;` while `none` will set `border-style: none;`. `0` is [preferred](http://stackoverflow.com/questions/2922909/should-i-use-border-none-or-border-0) because it's shorter.
@@ -259,6 +263,36 @@ An example:
 ### Variables
 
 Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_cased variable names. It is acceptable to prefix variable names that are intended to be used only within the same file with an underscore (e.g. `$_my-variable`).
+
+### Dimensions & Sizing
+
+Consider using variables for common sizes. 
+
+**Bad**
+```scss
+.bad-element {
+  margin-bottom: 104px; 
+  padding-left: 57px;
+} 
+
+.bad-icon {
+  width: 12px; 
+  height: 7em; 
+}
+```
+
+**Good**
+```scss
+.good-element {
+  margin-bottom: $unit-5; 
+  padding-left: $unit-3;
+} 
+
+.good-icon {
+  width: $icon-unit; 
+  height: $icon-unit; 
+}
+```
 
 ### Mixins
 
